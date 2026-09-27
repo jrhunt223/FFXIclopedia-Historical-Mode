@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2 — 2026-09-27
+
+- Added Firefox Manifest V3 compatibility.
+- Added Mozilla extension ID for AMO signing.
+- Declared no data collection for Mozilla Add-ons.
+- Uses a cross-browser background configuration that works in modern Chrome/Edge and Firefox.
+- Updated installation and distribution documentation for Firefox.
+
 ## 1.0.1 — 2026-09-27
 
 - Added visible **FFXI historical wiki data (Phoenix XI)** default-preset labeling.
