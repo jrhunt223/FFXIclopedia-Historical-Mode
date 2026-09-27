@@ -1,6 +1,6 @@
-# Privacy Policy — FFXIclopedia Historical Mode
+# Privacy Policy — FFXIclopedia Historical Viewer
 
-FFXIclopedia Historical Mode does not collect, sell, transmit, or retain personal information.
+FFXIclopedia Historical Viewer does not collect, sell, transmit, or retain personal information.
 
 The extension stores only its own settings and revision-resolution cache using the browser extension storage APIs:
 
