@@ -1,4 +1,4 @@
-# FFXIclopedia Historical Mode
+# FFXIclopedia Historical Viewer
 
 A small cross-browser WebExtension for browsing **FFXIclopedia as it existed before a chosen date**.
 
@@ -15,10 +15,11 @@ the extension asks FFXIclopedia's MediaWiki API for the newest revision strictly
 - Automatically resolves normal FFXIclopedia article pages to their historical revision.
 - Keeps internal FFXIclopedia navigation in historical mode.
 - Uses an **exclusive** cutoff: "2007-11-19" means all edits on Nov 19 are excluded.
-- Blocks current/newer article content when no pre-cutoff revision exists instead of silently showing modern data.
+- Warns when a page has no revision before the cutoff and automatically shows the **oldest available revision** instead of modern/current retail data.
 - Shows a small revision/cutoff badge on historical pages.
 - Lets you view the current version of a single page as a one-time bypass.
 - Caches revision lookups locally for faster browsing.
+- Warns users to sign in to FFXIclopedia/Fandom because Fandom may restrict old revision pages for logged-out users.
 - Does not collect browsing data or send anything to a third-party service. It only calls FFXIclopedia's own MediaWiki API.
 
 ## Install locally (Chrome)
@@ -28,7 +29,7 @@ the extension asks FFXIclopedia's MediaWiki API for the newest revision strictly
 3. Enable **Developer mode**.
 4. Click **Load unpacked**.
 5. Select the folder containing `manifest.json`.
-6. Pin **FFXIclopedia Historical Mode** if you want quick access to the cutoff controls.
+6. Pin **FFXIclopedia Historical Viewer** if you want quick access to the cutoff controls.
 
 ## Install locally (Firefox)
 
@@ -89,7 +90,7 @@ It then navigates to the returned `oldid`.
 - This reproduces the practical workflow of selecting an old page revision. MediaWiki/Fandom may still render some transcluded templates or site chrome using newer versions.
 - Search and special pages are not time-locked. Search normally, then click a result; the article result will be resolved to the historical revision.
 - History/diff/edit utility views are left alone intentionally.
-- A page that did not exist before the cutoff is blocked with a "No historical page shown" screen, with an explicit one-time option to view the modern page.
+- If a page did not exist before the cutoff, Historical Viewer clearly warns that the page is outside the selected era and displays the **oldest available revision**. It does not silently fall through to the current retail page.
 
 ## Browser compatibility
 
