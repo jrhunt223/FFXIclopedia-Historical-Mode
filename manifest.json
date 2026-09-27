@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "FFXIclopedia Historical Mode",
-  "version": "1.0.2",
+  "name": "FFXIclopedia Historical Viewer",
+  "version": "1.0.4",
   "description": "Browse FFXIclopedia as it existed before a chosen cutoff date.",
   "permissions": [
     "storage",
@@ -28,7 +28,7 @@
     }
   ],
   "action": {
-    "default_title": "FFXIclopedia Historical Mode",
+    "default_title": "FFXIclopedia Historical Viewer",
     "default_popup": "popup.html"
   },
   "icons": {
