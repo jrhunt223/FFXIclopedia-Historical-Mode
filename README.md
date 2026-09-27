@@ -1,6 +1,6 @@
 # FFXIclopedia Historical Mode
 
-A small Chromium extension for browsing **FFXIclopedia as it existed before a chosen date**.
+A small cross-browser WebExtension for browsing **FFXIclopedia as it existed before a chosen date**.
 
 Default preset: **FFXI historical wiki data (Phoenix XI)** — cutoff **before November 19, 2007**.
 
@@ -30,6 +30,13 @@ the extension asks FFXIclopedia's MediaWiki API for the newest revision strictly
 5. Select the folder containing `manifest.json`.
 6. Pin **FFXIclopedia Historical Mode** if you want quick access to the cutoff controls.
 
+## Install locally (Firefox)
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on**.
+3. Select `manifest.json` from the extracted release folder.
+4. For permanent installation, install the Mozilla-signed release from addons.mozilla.org once published.
+
 ## Install locally (Microsoft Edge)
 
 1. Unzip the release.
@@ -54,9 +61,10 @@ The release ZIP has `manifest.json` at its root and is suitable as source for:
 
 - Chrome/Chromium "Load unpacked" after extraction.
 - Microsoft Edge "Load unpacked" after extraction.
-- Store submission packaging, subject to each store's developer-account and review requirements.
+- Firefox temporary loading through `about:debugging`.
+- Store submission packaging for Chrome Web Store, Microsoft Edge Add-ons, and Mozilla Add-ons (AMO), subject to each store's review requirements.
 
-Chrome/Edge do not generally install arbitrary unsigned ZIP files directly for ordinary users. For easy public one-click distribution, publish the ZIP through the Chrome Web Store and/or Microsoft Edge Add-ons.
+Chrome/Edge do not generally install arbitrary unsigned ZIP files directly for ordinary users, and Firefox release builds require Mozilla signing for permanent installation. For easy public installation, publish the same release through the Chrome Web Store, Microsoft Edge Add-ons, and Mozilla Add-ons (AMO).
 
 ## Permissions
 
@@ -82,6 +90,10 @@ It then navigates to the returned `oldid`.
 - Search and special pages are not time-locked. Search normally, then click a result; the article result will be resolved to the historical revision.
 - History/diff/edit utility views are left alone intentionally.
 - A page that did not exist before the cutoff is blocked with a "No historical page shown" screen, with an explicit one-time option to view the modern page.
+
+## Browser compatibility
+
+The manifest includes both Chromium Manifest V3 `background.service_worker` and Firefox `background.scripts` declarations. It also includes the Mozilla extension ID and a `data_collection_permissions` declaration of `none` for AMO signing.
 
 ## License
 
