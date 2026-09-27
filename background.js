@@ -79,15 +79,43 @@ async function resolveRevision(title, cutoff) {
   } else {
     const revision = page.revisions?.[0];
     if (!revision) {
-      result = {
-        found: false,
-        missing: false,
-        requestedTitle: title,
-        title: page.title || title
-      };
+      // The page exists, but nothing exists before the selected era cutoff.
+      // Resolve the oldest revision so modern/current retail content is never
+      // silently shown as a fallback.
+      const oldestData = await apiFetch({
+        action: "query",
+        prop: "revisions",
+        titles: page.title || title,
+        rvprop: "ids|timestamp",
+        rvlimit: "1",
+        rvdir: "newer",
+        rvstart: "2001-01-01T00:00:00Z"
+      });
+      const oldestPage = pagesFromResponse(oldestData)[0];
+      const oldestRevision = oldestPage?.revisions?.[0];
+
+      if (oldestRevision) {
+        result = {
+          found: true,
+          fallback: true,
+          requestedTitle: title,
+          title: oldestPage.title || page.title || title,
+          revid: oldestRevision.revid,
+          parentid: oldestRevision.parentid,
+          timestamp: oldestRevision.timestamp
+        };
+      } else {
+        result = {
+          found: false,
+          missing: false,
+          requestedTitle: title,
+          title: page.title || title
+        };
+      }
     } else {
       result = {
         found: true,
+        fallback: false,
         requestedTitle: title,
         title: page.title || title,
         revid: revision.revid,
