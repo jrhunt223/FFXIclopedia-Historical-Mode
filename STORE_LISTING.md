@@ -36,3 +36,10 @@ Used only when the user clicks the popup controls to reload the current page or 
 
 ffxiclopedia.fandom.com host permission:
 Required to inspect FFXIclopedia pages and query FFXIclopedia's MediaWiki API for historical revision IDs.
+
+## Firefox / AMO notes
+
+- Manifest V3 extension ID: `ffxiclopedia-historical-mode@jrhunt223.github.io`
+- Declared data collection: `none`
+- Uses `background.scripts` in Firefox and `background.service_worker` in Chromium.
+- No remote code, analytics, advertising, or telemetry.
