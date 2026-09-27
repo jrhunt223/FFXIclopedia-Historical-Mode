@@ -112,3 +112,22 @@ footer {
   font-size: 10px;
   line-height: 1.4;
 }
+
+.login-warning {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px solid #d8a827;
+  border-radius: 7px;
+  background: rgba(216, 168, 39, .10);
+  line-height: 1.4;
+}
+.login-warning strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+.login-warning span {
+  display: block;
+  color: #d8dce4;
+  font-size: 11px;
+}
