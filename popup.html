@@ -3,12 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FFXIclopedia Historical Mode</title>
+  <title>FFXIclopedia Historical Viewer</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <main>
-    <h1>FFXIclopedia Historical Mode</h1>
+    <h1>FFXIclopedia Historical Viewer</h1>
+
+    <section class="login-warning" role="note">
+      <strong>FFXIclopedia login required</strong>
+      <span>Sign in to FFXIclopedia/Fandom before using Historical Viewer. Fandom may block historical revisions for logged-out users.</span>
+    </section>
 
     <label class="row toggle-row">
       <span>
@@ -43,7 +48,7 @@
     <button id="clearCache" class="quiet">Clear revision cache</button>
 
     <div id="status" aria-live="polite"></div>
-    <footer>Unofficial extension. No browsing data is collected.</footer>
+    <footer>Unofficial extension. No personal data is collected.</footer>
   </main>
   <script src="popup.js"></script>
 </body>
