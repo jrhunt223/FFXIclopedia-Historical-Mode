@@ -43,8 +43,12 @@
       .join("/");
   }
 
-  function historicalUrl(title, revid, hash = "") {
-    return `https://${HOST}/wiki/${encodeTitle(title)}?oldid=${encodeURIComponent(revid)}${hash || ""}`;
+  function historicalUrl(title, revid, hash = "", fallback = false) {
+    const url = new URL(`https://${HOST}/wiki/${encodeTitle(title)}`);
+    url.searchParams.set("oldid", String(revid));
+    if (fallback) url.searchParams.set("ffxihm", "fallback");
+    url.hash = hash || "";
+    return url.toString();
   }
 
   function currentUrlForPage(url = new URL(location.href)) {
@@ -140,8 +144,10 @@
       const heading = document.createElement("div");
       heading.style.cssText = "font-weight:700;margin-bottom:3px;";
       heading.textContent = status === "bypass"
-        ? "FFXIclopedia Historical Mode — bypassed"
-        : "FFXIclopedia Historical Mode";
+        ? "FFXIclopedia Historical Viewer — bypassed"
+        : status === "fallback"
+          ? "FFXIclopedia Historical Viewer — outside selected era"
+          : "FFXIclopedia Historical Viewer";
       badge.appendChild(heading);
 
       const details = document.createElement("div");
@@ -149,6 +155,10 @@
       if (status === "historical") {
         details.textContent =
           `Revision: ${formatDate(info?.timestamp)} • cutoff: before ${formatCutoff(settings.cutoff)}`;
+      } else if (status === "fallback") {
+        details.textContent =
+          `No revision exists before ${formatCutoff(settings.cutoff)}. Showing the oldest available revision instead: ${formatDate(info?.timestamp)}. This page is outside the selected era.`;
+        badge.style.borderColor = "rgba(255, 149, 0, .95)";
       } else {
         details.textContent = `Cutoff remains before ${formatCutoff(settings.cutoff)}.`;
       }
@@ -236,7 +246,7 @@
       card.appendChild(p2);
 
       const p3 = document.createElement("p");
-      p3.textContent = `Historical Mode is configured to show only revisions from before ${formatCutoff(settings.cutoff)}.`;
+      p3.textContent = `Historical Viewer is configured to show only revisions from before ${formatCutoff(settings.cutoff)}.`;
       card.appendChild(p3);
 
       const button = document.createElement("button");
@@ -280,7 +290,7 @@
       return false;
     }
 
-    const target = historicalUrl(result.title || title, result.revid, hash);
+    const target = historicalUrl(result.title || title, result.revid, hash, Boolean(result.fallback));
     if (target !== location.href) {
       location.replace(target);
       return true;
@@ -350,7 +360,7 @@
 
         const result = response.result;
         if (result?.found) {
-          location.href = historicalUrl(result.title || title, result.revid, url.hash);
+          location.href = historicalUrl(result.title || title, result.revid, url.hash, Boolean(result.fallback));
         } else {
           location.href = url.toString();
         }
