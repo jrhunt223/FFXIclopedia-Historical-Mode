@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.4 — 2026-09-27
+
+- Added a prominent reminder that users should be logged in to FFXIclopedia/Fandom before using Historical Viewer.
+- When no revision exists before the selected cutoff, the viewer now resolves and displays the **oldest available revision** instead of current retail data.
+- Added a clear **outside selected era** warning on oldest-revision fallback pages.
+- Preserves strict era enforcement for normal historical pages.
+
+## 1.0.3 — 2026-09-27
+
+- Rebranded the extension from **FFXIclopedia Historical Mode** to **FFXIclopedia Historical Viewer**.
+- Updated extension and store-facing branding.
+
 ## 1.0.2 — 2026-09-27
 
 - Added Firefox Manifest V3 compatibility.
