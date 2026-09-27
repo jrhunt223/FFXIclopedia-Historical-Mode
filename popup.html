@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FFXIclopedia Historical Mode</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <h1>FFXIclopedia Historical Mode</h1>
+
+    <label class="row toggle-row">
+      <span>
+        <strong>Historical mode</strong>
+        <small>Automatically open historical revisions.</small>
+      </span>
+      <input id="enabled" type="checkbox">
+    </label>
+
+    <section class="preset">
+      <strong>FFXI historical wiki data (Phoenix XI)</strong>
+      <small>Default historical cutoff: November 19, 2007</small>
+    </section>
+
+    <label class="field">
+      <span>Show revisions strictly before</span>
+      <input id="cutoff" type="date" value="2007-11-19">
+    </label>
+
+    <label class="row toggle-row compact">
+      <span>Show page badge</span>
+      <input id="showBadge" type="checkbox">
+    </label>
+
+    <p class="hint">
+      Default: before Nov 19, 2007. An edit made on Nov 19 itself is excluded.
+    </p>
+
+    <button id="apply" class="primary">Save & reload page</button>
+    <button id="resetDefault">Reset to Phoenix XI default</button>
+    <button id="current">View current page once</button>
+    <button id="clearCache" class="quiet">Clear revision cache</button>
+
+    <div id="status" aria-live="polite"></div>
+    <footer>Unofficial extension. No browsing data is collected.</footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
