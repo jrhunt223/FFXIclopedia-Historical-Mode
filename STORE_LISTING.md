@@ -1,13 +1,13 @@
 # Store Listing Draft
 
 ## Name
-FFXIclopedia Historical Mode
+FFXIclopedia Historical Viewer
 
 ## Short description
 Browse FFXIclopedia using the newest article revision that existed before a date you choose.
 
 ## Detailed description
-FFXIclopedia Historical Mode turns normal FFXIclopedia browsing into a historical snapshot.
+FFXIclopedia Historical Viewer turns normal FFXIclopedia browsing into a historical snapshot.
 
 Choose a cutoff date and the extension automatically resolves each article to the newest revision that existed before that date. It is useful for researching older Final Fantasy XI eras without repeatedly opening each article's History page and manually selecting a revision.
 
@@ -17,7 +17,8 @@ Features:
 - revision date/cutoff indicator
 - one-click current-page bypass
 - local revision cache
-- fail-closed behavior when no historical revision exists
+- oldest-available-revision fallback with an out-of-era warning when no pre-cutoff revision exists
+- login reminder for FFXIclopedia/Fandom historical-page access
 - no analytics or tracking
 
 Default preset: **FFXI historical wiki data (Phoenix XI)** — before November 19, 2007. Users can select any other cutoff date.
