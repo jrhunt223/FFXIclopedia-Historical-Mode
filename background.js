@@ -1,3 +1,5 @@
+const CACHE_VERSION = "v1.0.4";
+
 const DEFAULTS = {
   enabled: true,
   cutoff: "2007-11-19",
@@ -52,7 +54,7 @@ async function apiFetch(params) {
 }
 
 async function resolveRevision(title, cutoff) {
-  const cacheKey = `revision|${cutoff}|${title}`;
+  const cacheKey = `${CACHE_VERSION}|revision|${cutoff}|${title}`;
   const cached = await chrome.storage.local.get(cacheKey);
   if (cached[cacheKey]) return cached[cacheKey];
 
