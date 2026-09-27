@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "FFXIclopedia Historical Viewer",
+  "version": "1.0.4",
+  "description": "Browse FFXIclopedia as it existed before a chosen cutoff date.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://ffxiclopedia.fandom.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ffxiclopedia.fandom.com/wiki/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "FFXIclopedia Historical Viewer",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ffxiclopedia-historical-mode@jrhunt223.github.io",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}
