@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "FFXIclopedia Historical Mode",
+  "version": "1.0.1",
+  "description": "Browse FFXIclopedia as it existed before a chosen cutoff date.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://ffxiclopedia.fandom.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ffxiclopedia.fandom.com/wiki/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "FFXIclopedia Historical Mode",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
