@@ -7,48 +7,73 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <main>
-    <h1>FFXIclopedia Historical Viewer</h1>
+  <main class="panel">
+    <header class="hero">
+      <div class="hero-art" aria-hidden="true"></div>
+      <div class="brand-row">
+        <img src="icons/icon128.png" class="brand-icon" alt="">
+        <div class="brand-copy">
+          <h1>FFXIclopedia</h1>
+          <div class="subtitle">Historical Viewer</div>
+        </div>
+      </div>
+    </header>
 
-    <section class="login-warning" role="note">
-      <strong>FFXIclopedia login required</strong>
-      <span>Sign in to FFXIclopedia/Fandom before using Historical Viewer. Fandom may block historical revisions for logged-out users.</span>
+    <section class="intro">
+      <p>View how FFXIclopedia pages appeared<br>at a specific point in time.</p>
     </section>
 
-    <label class="row toggle-row">
-      <span>
-        <strong>Historical mode</strong>
-        <small>Automatically open historical revisions.</small>
+    <div class="ornament" aria-hidden="true"><span></span></div>
+
+    <section class="presets" aria-labelledby="preset-title">
+      <h2 id="preset-title">Select a date preset</h2>
+      <label class="preset-option"><input type="radio" name="preset" value="2002-05-16"><span>Release (2002)</span></label>
+      <label class="preset-option"><input type="radio" name="preset" value="2004-09-16"><span>Chains of Promathia (2004)</span></label>
+      <label class="preset-option"><input type="radio" name="preset" value="2006-04-20"><span>Treasures of Aht Urhgan (2006)</span></label>
+      <label class="preset-option"><input type="radio" name="preset" value="2007-11-20"><span>Wings of the Goddess (2007)</span></label>
+      <label class="preset-option"><input type="radio" name="preset" value="2013-03-26"><span>Seekers of Adoulin (2013)</span></label>
+      <label class="preset-option"><input type="radio" name="preset" value="2015-05-14"><span>Rhapsodies of Vana'diel (2015)</span></label>
+      <label class="preset-option"><input id="customPreset" type="radio" name="preset" value="custom"><span>Custom date</span></label>
+
+      <div class="date-card">
+        <label for="cutoff">Show revisions strictly before</label>
+        <input id="cutoff" type="date" value="2007-11-19">
+      </div>
+    </section>
+
+    <div class="ornament" aria-hidden="true"><span></span></div>
+
+    <label class="toggle-row">
+      <span class="switch-wrap">
+        <input id="enabled" type="checkbox">
+        <span class="switch" aria-hidden="true"></span>
       </span>
-      <input id="enabled" type="checkbox">
+      <span class="toggle-copy">
+        <strong>Enable historical viewer</strong>
+        <small>Automatically use historical revisions<br>on this site.</small>
+      </span>
     </label>
 
-    <section class="preset">
-      <strong>FFXI historical wiki data (Phoenix XI)</strong>
-      <small>Default historical cutoff: November 19, 2007</small>
-    </section>
-
-    <label class="field">
-      <span>Show revisions strictly before</span>
-      <input id="cutoff" type="date" value="2007-11-19">
-    </label>
-
-    <label class="row toggle-row compact">
+    <label class="badge-row">
       <span>Show page badge</span>
       <input id="showBadge" type="checkbox">
     </label>
 
-    <p class="hint">
-      Default: before Nov 19, 2007. An edit made on Nov 19 itself is excluded.
-    </p>
+    <section class="login-warning" role="note">
+      <strong>FFXIclopedia login required</strong>
+      <span>Sign in to FFXIclopedia/Fandom before using historical revisions.</span>
+    </section>
 
-    <button id="apply" class="primary">Save & reload page</button>
-    <button id="resetDefault">Reset to Phoenix XI default</button>
-    <button id="current">View current page once</button>
-    <button id="clearCache" class="quiet">Clear revision cache</button>
+    <div class="ornament compact" aria-hidden="true"><span></span></div>
+
+    <section class="actions">
+      <button id="apply" class="primary"><span class="button-icon">↻</span>Save &amp; reload page</button>
+      <button id="resetDefault"><span class="button-icon">↶</span>Reset to Phoenix XI default</button>
+      <button id="current"><span class="button-icon">↗</span>View current page once</button>
+      <button id="clearCache"><span class="button-icon">▣</span>Clear revision cache</button>
+    </section>
 
     <div id="status" aria-live="polite"></div>
-    <footer>Unofficial extension. No personal data is collected.</footer>
   </main>
   <script src="popup.js"></script>
 </body>
