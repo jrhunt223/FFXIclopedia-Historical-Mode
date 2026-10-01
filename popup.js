@@ -4,22 +4,54 @@ const DEFAULTS = {
   showBadge: true
 };
 
+const PRESETS = new Set([
+  "2002-05-16",
+  "2004-09-16",
+  "2006-04-20",
+  "2007-11-20",
+  "2013-03-26",
+  "2015-05-14"
+]);
+
 const enabled = document.getElementById("enabled");
 const cutoff = document.getElementById("cutoff");
 const showBadge = document.getElementById("showBadge");
+const customPreset = document.getElementById("customPreset");
+const presetInputs = [...document.querySelectorAll('input[name="preset"]')];
 const status = document.getElementById("status");
+
+function selectPresetForDate(value) {
+  const match = presetInputs.find(input => input.value === value);
+  if (match) {
+    match.checked = true;
+  } else {
+    customPreset.checked = true;
+  }
+}
 
 async function load() {
   const settings = await chrome.storage.sync.get(DEFAULTS);
   enabled.checked = settings.enabled ?? true;
   cutoff.value = settings.cutoff || DEFAULTS.cutoff;
   showBadge.checked = settings.showBadge ?? true;
+  selectPresetForDate(cutoff.value);
 }
 
 async function activeTab() {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
   return tabs[0];
 }
+
+presetInputs.forEach(input => {
+  input.addEventListener("change", () => {
+    if (!input.checked || input.value === "custom") return;
+    cutoff.value = input.value;
+  });
+});
+
+cutoff.addEventListener("input", () => {
+  selectPresetForDate(cutoff.value);
+});
 
 document.getElementById("apply").addEventListener("click", async () => {
   if (!cutoff.value) {
@@ -33,7 +65,6 @@ document.getElementById("apply").addEventListener("click", async () => {
     showBadge: showBadge.checked
   });
 
-  // A changed cutoff invalidates the meaning of cached page resolutions.
   await chrome.storage.local.clear();
 
   const tab = await activeTab();
@@ -46,13 +77,14 @@ document.getElementById("resetDefault").addEventListener("click", async () => {
   cutoff.value = DEFAULTS.cutoff;
   enabled.checked = DEFAULTS.enabled;
   showBadge.checked = DEFAULTS.showBadge;
+  selectPresetForDate(DEFAULTS.cutoff);
 
   await chrome.storage.sync.set(DEFAULTS);
   await chrome.storage.local.clear();
 
   const tab = await activeTab();
   if (tab?.id) await chrome.tabs.reload(tab.id);
-  status.textContent = "Reset to FFXI historical wiki data (Phoenix XI): November 19, 2007.";
+  status.textContent = "Reset to Phoenix XI default: November 19, 2007.";
   setTimeout(() => window.close(), 500);
 });
 
